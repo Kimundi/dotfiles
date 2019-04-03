@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# meant to be run with `bash -c "/path/to/wlaunch"` when running from e.g. a Windows shortcut
+
+# explicitly needed when launching with bash -c from Windows
+cd ~
+source ~/.bashrc
+~/.scripts/wsl/process_screen_geometry.py "$@" ~/.config/i3/config
+i3
+
