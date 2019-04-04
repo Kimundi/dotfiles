@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Preprocessor for i3 config files
+
 import sys
 import os
 
@@ -74,4 +76,5 @@ infile_pp += "\n"
 for line in infile.splitlines():
     infile_pp += process_line(line)
 
-print(infile_pp.rstrip())
+with open(sys.argv[3], 'w') as f:
+    f.write(infile_pp)
