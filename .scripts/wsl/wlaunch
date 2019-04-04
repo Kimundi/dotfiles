@@ -5,6 +5,7 @@
 # explicitly needed when launching with bash -c from Windows
 cd ~
 source ~/.bashrc
+~/.scripts/config_process.py wsl ~/.config/i3/config.in ~/.config/i3/config
 ~/.scripts/wsl/process_screen_geometry.py "$@" ~/.config/i3/config
 
 xrdb -merge ~/.Xresources
