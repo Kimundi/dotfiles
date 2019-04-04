@@ -1,5 +1,5 @@
 # Don't run in command substitutions
-if not status -c
+if not status -c; and test -n "$WINDOWID"
     functions -c cd _base_cd
 
     function cd
