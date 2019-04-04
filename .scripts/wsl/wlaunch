@@ -6,5 +6,8 @@
 cd ~
 source ~/.bashrc
 ~/.scripts/wsl/process_screen_geometry.py "$@" ~/.config/i3/config
-i3
+
+xrdb -merge ~/.Xresources
+
+exec i3
 
