@@ -16,7 +16,14 @@ with open(sys.argv[2], 'r') as f:
 
 defines = sys.argv[1].split(',')
 
-ctx = [] 
+ctx = []
+def included():
+    global ctx
+    keep = True
+    for c in ctx:
+        if c == "if-false":
+            keep = False
+    return keep
 def process_line(line):
     global ctx
     line = "{}\n".format(line.rstrip())
@@ -32,8 +39,13 @@ def process_line(line):
         else:
             parsed = None
             return False
-    
-    if prefix("# PP"):
+
+    if prefix("# PP END"):
+        ctx.pop()
+        return "# EVAL PP END\n"
+    elif not included():
+        return "# SKIP " + line
+    elif prefix("# PP"):
         line = parsed
         eval_res = ""
         extra_lines = ""
@@ -44,8 +56,6 @@ def process_line(line):
             else:
                 ctx.append("if-false")
             eval_res = " = " + ctx[-1]
-        elif prefix("END"):
-            ctx.pop()
         elif prefix("INCLUDE"):
             parsed = os.path.expanduser(parsed)
             if os.path.isfile(parsed):
@@ -59,14 +69,7 @@ def process_line(line):
             return "# UNKNOWN PP {}\n".format(line)
         return "# EVAL PP {}{}\n{}".format(line, eval_res, extra_lines)
     else:
-        keep = True
-        for c in ctx:
-            if c == "if-false":
-                keep = False
-        if keep:
-            return line
-        else:
-            return "# " + line
+        return line
 
 infile_pp = ""
 infile_pp += "#########################################\n"
