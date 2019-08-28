@@ -1,3 +1,4 @@
 {
-    "keyboard.dispatch": "keyCode"
+    "keyboard.dispatch": "keyCode",
+    "files.watcherExclude": { "**/target/**": true }"
 }
