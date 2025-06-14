@@ -1,4 +1,6 @@
 /.cache/
 /.dotfiles/git_dir/
+/.cargo/bin/
+/.cargo/env*
 
 
