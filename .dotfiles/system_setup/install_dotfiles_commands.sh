@@ -9,6 +9,7 @@ function setup {
     $dotfiles remote add origin git@github.com:Kimundi/dotfiles.git
     $dotfiles fetch
     $dotfiles reset origin/master
+    $dotfiles branch --set-upstream-to=origin/master
     $dotfiles restore $HOME/bin/dotfiles
 
     echo "Done"
