@@ -3,6 +3,11 @@
 set -e
 
 function setup {
+    if ! compgen -G "$HOME/.ssh/*.pub" > /dev/null; then
+      echo "Set up a ssh key first, and register it with github!"
+      exit 1
+    fi
+
     echo "Setting up dotfiles"
     echo
 
